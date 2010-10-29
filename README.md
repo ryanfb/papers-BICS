@@ -3,8 +3,8 @@
 Links
 =====
 
-* http://www.stoa.org/archives/1263
-* http://www.clir.org/pubs/archives/Babeu2010.pdf
+* [Digital Papyrology](http://www.stoa.org/archives/1263)
+* [Rome Wasn't Digitized in a Day: Building a Cyberinfrastructure for Digital Classicists](http://www.clir.org/pubs/archives/Babeu2010.pdf)
 
 Abstract
 ========
