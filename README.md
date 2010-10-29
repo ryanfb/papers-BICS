@@ -7,6 +7,7 @@ Links
 * [Rome Wasn't Digitized in a Day: Building a Cyberinfrastructure for Digital Classicists](http://www.clir.org/pubs/archives/Babeu2010.pdf)
 * [Integrating Digital Papyrology](http://hdl.handle.net/2451/29592)
 * [Background and Funding](http://idp.atlantides.org/trac/idp/wiki/BackgroundAndFunding)
+* [Tools for Collaborative Editing](http://wiki.digitalclassicist.org/OSCE_Scaife_Paper)
 
 Abstract
 ========
