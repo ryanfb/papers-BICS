@@ -37,6 +37,18 @@
 % This is now the recommended way for checking for PDFLaTeX:
 \usepackage{ifpdf}
 
+\usepackage{hyperref}
+\hypersetup{
+colorlinks = false,
+pdfborder = 0 0 0,
+pdftitle = {The Son of Suda On-Line},
+plainpages = false,
+}
+
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{}{, }
+% \usepackage{inlinebib}
+
 %\newif\ifpdf
 %\ifx\pdfoutput\undefined
 %\pdffalse % we are not running PDFLaTeX
@@ -50,6 +62,11 @@
 \else
 \usepackage{graphicx}
 \fi
+
+\usepackage{fontspec,xunicode}
+\setmainfont{Adobe Garamond Pro}
+\setmonofont{Gill Sans}
+
 \title{The Son of Suda On-Line}
 \author{Ryan Baumann}
 
@@ -65,12 +82,18 @@
 
 \maketitle
 
+\section*{Introduction}
 
-\begin{abstract}
-\end{abstract}
+\begin{quote}
+  \begin{enumerate}
+    \item Improve operability of the PN search interface on the merged and mapped data from the DDBDP, HGV, and APIS
+    \item Facilitate third-party use of the data and tools
+    \item Create a version controlled, transparent and fully audited, multi-author, web-based, real-time, tagless, editing environment, which — in tandem with a new editorial infrastructure — will allow the entire community of papyrologists to take control of the process of populating these communal assets with data
+  \end{enumerate}
+\end{quote}\citet{sosin}
 
-\section{Introduction}
+Test\footnote{\url{http://idp.atlantides.org/trac/idp/wiki/BackgroundAndFunding}} \cite{babeu}
 
-\bibliographystyle{plain}
-\bibliography{}
+\bibliographystyle{plainnat}
+\bibliography{bics-sosol}
 \end{document}
