@@ -5,6 +5,8 @@ Links
 
 * [Digital Papyrology](http://www.stoa.org/archives/1263)
 * [Rome Wasn't Digitized in a Day: Building a Cyberinfrastructure for Digital Classicists](http://www.clir.org/pubs/archives/Babeu2010.pdf)
+* [Integrating Digital Papyrology](http://hdl.handle.net/2451/29592)
+* [Background and Funding](http://idp.atlantides.org/trac/idp/wiki/BackgroundAndFunding)
 
 Abstract
 ========
