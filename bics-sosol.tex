@@ -65,7 +65,7 @@ plainpages = false,
 
 \usepackage{fontspec,xunicode}
 \setmainfont{Cardo}
-\setmonofont{Gill Sans}
+\setmonofont{Lucida Grande}
 
 \title{The Son of Suda On-Line}
 \author{Ryan Baumann}
@@ -91,7 +91,69 @@ Integrating Digital Papyrology (IDP) is a joint project among a number of instit
     \item Facilitate third-party use of the data and tools.
     \item Create a version controlled, transparent and fully audited, multi-author, web-based, real-time, tagless, editing environment, which — in tandem with a new editorial infrastructure — will allow the entire community of papyrologists to take control of the process of populating these communal assets with data.
   \end{enumerate}
-\end{quote}The environment described in the last item, inspired by the Suda On-Line\footnote{The Suda On-Line (\url{http://www.stoa.org/sol/}) is a project aimed at collaborative translation of the massive 10th century Byzantine encyclopedia known as the \emph{Suda}.}, came to be known as the \emph{Son} of Suda On-Line (SoSOL).\citep{background, sosin, babeu}
+\end{quote}The environment described in the last item, inspired by the Suda On-Line\footnote{The Suda On-Line (\url{http://www.stoa.org/sol/}) is a project aimed at collaborative translation of the massive 10th century Byzantine encyclopedia known as the \emph{Suda}.}, was named the Son of Suda On-Line (SoSOL) \citep{background, sosin}.
+
+\section*{The Son of Suda On-Line}
+
+\begin{figure}
+    \begin{verbatim}
+[ἔτους α (?) Αὐτοκράτορος]   ̣  ̣[  ̣]  ̣  ̣του 
+[- ca.12 -] Σεβαστοῦ 
+[εἴργ(ασται) ὑ(πὲρ) χω(ματικῶν) ἔ]ργ(ων) τοῦ αὐτοῦ̣ πρώτου (ἔτους) 
+[ -ca.?- ] κ κϛ ἐ[ν] τῇ Ἐπα -
+[γαθιαν]ῇ διώ(ρυγι) Βακχιά(δος) 
+[ -ca.?- ] Πατκ(όννεως) τοῦ Θεαγένους 
+[  ̣  ̣  ̣  ̣  ̣  ̣] μη(τρὸς) Ταύρεως 
+[ -ca.?- ] (hand 2) σεση(μείωμαι)
+    \end{verbatim}
+    \caption{Typical print transcription following Leiden conventions (P.Sijp., 41a)\label{leiden}}
+\end{figure}
+
+\begin{figure}
+    \begin{verbatim}
+1. [ἔτους] [<#α=1#> (?)] [Αὐτοκράτορος] .2[.1].2του
+2. [ca.12] Σεβαστοῦ
+3. [(εἴργ(ασται)) (ὑ(πὲρ) χω(ματικῶν))] ([ἔ]ργ(ων)) τοῦ αὐτοῦ̣ πρώτου ((ἔτους))
+4. [.?] <#κ=20#>  <#κϛ=26#> ἐ[ν] τῇ Ἐπα
+5.- [γαθιαν]ῇ (διώ(ρυγι)) (Βακχιά(δος))
+6. [.?] (Πατκ(όννεως)) τοῦ Θεαγένους
+7. [ca.6] (μη(τρὸς)) Ταύρεως
+8. [.?] $m2 (σεση(μείωμαι))
+    \end{verbatim}
+    \caption{Leiden+ representation of the same text\label{leidenp}}
+\end{figure}
+
+\begin{figure}
+  \begin{verbatim}
+<div xml:lang="grc" type="edition" xml:space="preserve">
+  <ab>
+    <lb n="1"/><supplied reason="lost">ἔτους</supplied> <supplied
+      reason="lost" cert="low"><num value="1">α</num> </supplied> <supplied
+      reason="lost">Αὐτοκράτορος</supplied> <gap reason="illegible" quantity="2"
+      unit="character"/><gap reason="lost" quantity="1" unit="character"/><gap
+      reason="illegible" quantity="2" unit="character"/>του
+    <lb n="2"/><gap reason="lost" quantity="12" unit="character"
+      precision="low"/> Σεβαστοῦ
+    <lb n="3"/><supplied reason="lost"><expan>εἴργ<ex>ασται</ex></expan>
+      <expan>ὑ<ex>πὲρ</ex> χω<ex>ματικῶν</ex></expan></supplied>
+      <expan><supplied reason="lost">ἔ</supplied>ργ<ex>ων</ex></expan> τοῦ
+      αὐτο<unclear>ῦ</unclear> πρώτου <expan><ex>ἔτους</ex></expan>
+    <lb n="4"/><gap reason="lost" extent="unknown" unit="character"/> <num
+      value="20">κ</num> <num value="26">κϛ</num> ἐ<supplied
+      reason="lost">ν</supplied> τῇ Ἐπα
+    <lb n="5" type="inWord"/><supplied reason="lost">γαθιαν</supplied>ῇ
+      <expan>διώ<ex>ρυγι</ex></expan> <expan>Βακχιά<ex>δος</ex></expan>
+    <lb n="6"/><gap reason="lost" extent="unknown" unit="character"/>
+      <expan>Πατκ<ex>όννεως</ex></expan> τοῦ Θεαγένους
+    <lb n="7"/><gap reason="lost" quantity="6" unit="character"
+      precision="low"/> <expan>μη<ex>τρὸς</ex></expan> Ταύρεως
+    <lb n="8"/><gap reason="lost" extent="unknown" unit="character"/>
+      <handShift new="m2"/><expan>σεση<ex>μείωμαι</ex></expan>
+  </ab>
+</div>
+  \end{verbatim}
+  \caption{EpiDoc XML equivalent to the preceding Leiden+\label{epidoc}}
+\end{figure}
 
 \bibliographystyle{plainnat}
 \bibliography{bics-sosol}
