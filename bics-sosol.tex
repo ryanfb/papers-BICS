@@ -99,9 +99,9 @@ Integrating Digital Papyrology (IDP) is a joint project among a number of instit
 
 Though collaborative online editing environments such as Wikipedia have the advantage of allowing anyone to contribute, many question the scholarly integrity of resources which can be edited by anyone unvetted. The Suda On-Line, which actually predated the existence of Wikipedia by two years, addressed this problem by marking submitted translations with their level of editorial vetting \citep{finkel}. This combination of openness to contribution with strong editorial control was the guiding principle in the design of the Son of Suda On-Line.
 
-However, even more than SOL, the papyrological projects encompassed in Integrating Digital Papyrology value the scholarly integrity of data published under their aegis. Thus, SoSOL attempts to digitally replicate the traditional scholarly mechanisms of peer review these projects would normally enforce. This results in somewhat of an inversion of where and how editorial control is exerted in comparison with SOL. While SOL users are authorized by editors during registration and are assigned work or must request a specific entry \citep{mahoney}, in SoSOL users are not screened and at present work on whatever they feel needs emendation or inclusion in the corpus. However, this distinction in the assignment of work may just arise naturally from the differing natures of the texts involved; whereas the Suda—while large—is a bounded unit of work, papyri do not yet show signs of slowing their expanding numbers of transcription and publication.
+However, even more than SOL, the papyrological projects encompassed in Integrating Digital Papyrology value the scholarly integrity of data published under their aegis. Thus, SoSOL attempts to digitally replicate the traditional scholarly mechanisms of peer review these projects would normally enforce. This results in somewhat of an inversion of where and how editorial control is exerted in comparison with SOL. While SOL users are authorized by editors during registration and are assigned work or must request a specific entry \citep{mahoney}, in SoSOL users are not screened and at present work on whatever they feel needs emendation or inclusion in the corpus. However, this distinction in the assignment of work may just arise naturally from the differing natures of the texts involved; whereas the Suda—while large—is a bounded unit of work, the papyri do not yet show signs of halting their expanding numbers in transcriptions and publications.
 
-Standing in starker contrast is how submissions which have not received editorial oversight are handled: in SOL, they are immediately publicly accessible and marked as “draft”; in SoSOL, submissions undergo review and voting by an editorial board before publication as “canonical”. This may seem restrictive, or even contradictory to claims of openness. It is indeed the former, but only inasmuch as the editorial boards are  controlling the quality of what they are willing to put their names to in the tradition of peer review. The latter requires some discussion.
+Standing in starker contrast is how submissions which have not received editorial oversight are handled: in SOL, they are immediately publicly searchable and accessible but marked as “draft”; in SoSOL, submissions undergo review and voting by an editorial board before publication as “canonical” and made available for searching in the Papyrological Navigator. This may seem restrictive, or even contradictory to claims of openness. It is indeed the former, but only inasmuch as the editorial boards are controlling the quality of what they are willing to put their names to in the tradition of peer review. The latter requires some discussion.
 
 \subsection*{Data and Openness}
 
@@ -114,18 +114,23 @@ What do we mean here by “fully open”?
 On one level, it is the terms under which data is published.
 Though asserting any sort of copyright on the 2,000-year-old texts themselves is perhaps nonsensical (at least in the US\footnote{See \emph{Bridgeman Art Library v. Corel Corp.}}), the complete set of IDP XML files are published with a Creative Commons Attribution 3.0 License\footnote{\url{http://creativecommons.org/licenses/by/3.0/}}, explicitly permitting the typical varieties of scholarly reuse and citation anticipated for the data. (Atypical and unanticipated forms of reuse would be even more exciting.)
 
-On another level, it is the \emph{manner} in which data is published. For collaborative online projects, this is typically a challenge. If the data is constantly changing, how do you publish it in any traditional sense? Perhaps even more challenging is this: how do you publish the changes themselves, both retroactively and proactively?
+On another level, it is the \emph{manner} in which data is published. For collaborative online projects, this is usually a challenge. If the data is constantly changing, how do you publish it in any traditional sense? Perhaps even more challenging is this: how do you publish the changes themselves, both retroactively and proactively?
 
-By retroactively, we mean that the revision history of the data up to the present may itself be important; by proactively we mean that if a user has already obtained the complete revision history at some point in time, it is better to allow them to simply download the changes since that point. Many online collaborative environments, such as MediaWiki and the original SOL, store all changes in a database system. This usually makes distribution of the complete revision history, particularly proactive distribution, extremely difficult. As an example, the English Wikipedia was unable to distribute its complete dataset for several years, and only most recently able to dump its revision history in January 2010, with no successful exports since\footnote{\url{http://en.wikipedia.org/w/index.php?title=Wikipedia:Database_download&oldid=393163797\#Latest_complete_dump_of_English_Wikipedia}}. Even if they were able to do so, the only mechanism for updating such a data dump is to download the entire several-hundred-gigabyte file each time.
+By retroactively, we mean that the revision history of the data up to the present may itself be important; by proactively we mean that if a user has already obtained the complete revision history at some point in time, it is better to allow them to simply download the changes since that point. Many online collaborative environments, such as MediaWiki and the original SOL, store all changes in a database system. This usually makes distribution of the complete revision history, particularly proactive distribution, extremely difficult. As an example, the English Wikipedia was unable to distribute its complete dataset for several years, and was only most recently able to dump its revision history in January 2010, with no successful exports since\footnote{\url{http://en.wikipedia.org/w/index.php?title=Wikipedia:Database_download&oldid=393163797\#Latest_complete_dump_of_English_Wikipedia}}. Even if they were able to do so, the only mechanism for updating such a data dump is to download the entire several-hundred-gigabyte file each time.
 
 \subsection*{Next-Generation Version Control}
 
-\footnote{\url{http://sourceforge.net/projects/sosol/}}
+We felt that the best way to approach this problem was to use a \emph{Revision Control System} as the backend for the data itself, instead of a traditional database. Though there are many popular centralized systems such as CVS and Subversion, in recent years there has been an explosion in the popularity of \emph{distributed} revision control systems. Typically this means there is no “central” server except by social convention; all copies of the repository are in a sense equal and can share changes with one another. This allows for a variety of workflow styles, and has a number of other important impacts.
 
+One of the most popular distributed revision control systems is Git, initially developed by Linus Torvalds for managing the Linux kernel software project. Due to its broad acceptance, design choices, and proven performance on a number of large projects, it is the backend we selected for data in SoSOL. The SoSOL codebase itself was also managed with Git from the beginning, and is available online\footnote{\url{http://sourceforge.net/projects/sosol/}}.
+
+As a result of this choice, it is possible to use Git not only to retrieve both the complete revision history of the IDP data as managed by SoSOL\footnote{\url{http://halsted.vis.uky.edu/gitweb?p=idp.data.git}} (retroactive publication), but also easily update your copy of the repository as changes are published (proactive publication). Due to the distributed nature of Git, the concepts of branching development and merging changes have been integrated into its design, making it easy to keep your copy of the data up-to-date even if you have made your own modifications. (After all, if anyone can pull changes from any other copy of the repository, merging needs to be fast and easy.) The long-running version of this behavior of splitting off your own modifications is known in the open source world as “forking”. Git reduces the overhead of both forking a project, as well as of contributing your forked changes back.
+
+The fact that IDP now uses Git for its public data repository, in combination with the license the data is distributed under, represents the complete realization of “a constantly changing set of fully open data sources governed by the scholarly community and maintained by all active scholars who care to participate.” Thus, for us, “participate” in fact has two senses: participating within \emph{our} system (that is, participating in our editorial review process), or participating in any enterprise you choose with the complete dataset which we make freely available.
 
 \subsection*{Alternative Syntax for XML Editing}
 
-\begin{figure}
+\begin{figure}[ht]
     \begin{verbatim}
 [ἔτους α (?) Αὐτοκράτορος]   ̣  ̣[  ̣]  ̣  ̣του 
 [- ca.12 -] Σεβαστοῦ 
@@ -139,7 +144,7 @@ By retroactively, we mean that the revision history of the data up to the presen
     \caption{Typical print transcription following Leiden conventions (P.Sijp., 41a)\label{leiden}}
 \end{figure}\nocite{psijp}
 
-\begin{figure}
+\begin{figure}[h]
     \begin{verbatim}
 1. [ἔτους] [<#α=1#> (?)] [Αὐτοκράτορος] .2[.1].2του
 2. [ca.12] Σεβαστοῦ
@@ -153,7 +158,7 @@ By retroactively, we mean that the revision history of the data up to the presen
     \caption{Leiden+ representation of the same text\label{leidenp}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[hb]
   \begin{verbatim}
 <div xml:lang="grc" type="edition" xml:space="preserve">
   <ab>
