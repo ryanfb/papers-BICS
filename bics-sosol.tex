@@ -102,7 +102,7 @@ Though collaborative online editing environments such as Wikipedia have the adva
 
 However, even more than SOL, the papyrological projects encompassed in Integrating Digital Papyrology value the scholarly integrity of data published under their aegis. Thus, SoSOL attempts to digitally replicate the scholarly mechanisms of peer review these projects would normally enforce. This results in somewhat of an inversion of where and how editorial control is exerted in comparison with SOL. While SOL users are authorized by editors during registration and are assigned work or must request a specific entry \citep{mahoney}, in SoSOL users are not screened and at present work on whatever they feel needs emendation or inclusion in the corpus. However, this distinction in the assignment of work may just arise naturally from the differing natures of the texts involved; whereas the Suda—while large—is a bounded unit of work, the papyri do not yet show signs of halting their expanding numbers in transcriptions and publications.
 
-Standing in starker contrast is how submissions which have not received editorial oversight are handled: in SOL, they are immediately publicly searchable and accessible but marked as “draft”; in SoSOL, submissions undergo review and voting by an editorial board before publication as “canonical” and made available for searching in the Papyrological Navigator. This may seem restrictive, or even contradictory to claims of openness. It is indeed the former, but only inasmuch as the editorial boards are controlling the quality of what they are willing to put their names to in the tradition of peer review. The latter requires some discussion.
+Standing in starker contrast is how submissions which have not received editorial oversight are handled: in SOL, they are immediately publicly searchable and accessible but marked as “draft”; in SoSOL, submissions undergo review and voting by an editorial board before publication as “canonical” and being made available for searching in the Papyrological Navigator. This may seem restrictive, or even contradictory to claims of openness. It is indeed the former, but only inasmuch as the editorial boards are controlling the quality of what they are willing to put their names to in the tradition of peer review. The latter requires some discussion.
 
 \subsection*{Data and Openness}
 
@@ -121,7 +121,7 @@ By retroactively, we mean that the revision history of the data up to the presen
 
 \subsection*{Next-Generation Version Control}
 
-We felt that the best way to approach this problem was to use a \emph{Revision Control System} as the backend for the data itself, instead of a traditional database. Though there are many popular centralized systems such as CVS and Subversion, in recent years there has been an explosion in the popularity of \emph{distributed} version control systems (DVCSs). Typically this means there is no “central” server except by social convention; all copies of the repository are in a sense equal and can share changes with one another. This allows for a variety of workflow styles, and has a number of other important impacts.
+We felt that the best way to approach this problem was to use a \emph{Revision Control System} as the backend for the data itself, instead of a traditional database. Though there are many well-established centralized systems such as CVS and Subversion, in recent years there has been an explosion in the popularity of \emph{distributed} version control systems (DVCSs). Typically this means there is no “central” server except by social convention; all copies of the repository are in a sense equal and can share changes with one another. This allows for a variety of workflow styles, and has a number of other important impacts.
 
 One of the most popular distributed version control systems is Git, initially developed by Linus Torvalds for managing the Linux kernel software project. Due to its broad acceptance, design choices, and proven performance on a number of large projects, it is the backend we selected for data in SoSOL. The SoSOL codebase itself was also managed with Git from the beginning, and is available online.\footnote{\url{http://sourceforge.net/projects/sosol/}}
 
@@ -130,6 +130,12 @@ As a result of using a DVCS for the data backend, it is possible to use Git not 
 That a DVCS makes these things trivial also represents a significant decision in the design of SoSOL: for the “canonical” data repository it interacts with, it does not need to care about any external mechanisms or workflows used to introduce changes. SoSOL only needs to keep track of changes within its domain; it is merely a front-end and social infrastructure for easing and managing contributions. When a user edits data in SoSOL, it is forked from the main repository to allow them to do their work without interruption. They then submit their changes for editorial review, and when they pass muster they are merged back into the canonical repository. However, the repository may be updated by any external process in the interim, typically without drastically impacting the work that must be done to perform the merge.
 
 Thus the fact that IDP now uses Git for its public data repository, in combination with the license the data is distributed under, represents the complete realization of “a constantly changing set of fully open data sources governed by the scholarly community and maintained by all active scholars who care to participate.” For us, “participate” in fact has two senses: participating within \emph{our} system (that is, participating in our editorial review process), or participating in any enterprise you choose with the complete dataset which we make freely available.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=6in]{images/TopLevelDataFlow4Proposal-HAC.pdf}
+  \caption{Software components and data flow at the conclusion of IDP2\label{dataflow}}
+\end{figure}
 
 \subsection*{Alternative Syntax for XML Editing}
 
