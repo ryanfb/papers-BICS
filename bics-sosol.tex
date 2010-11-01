@@ -45,6 +45,8 @@ pdftitle = {The Son of Suda On-Line},
 plainpages = false,
 }
 
+\usepackage{attrib}
+
 \usepackage{natbib}
 \bibpunct{(}{)}{;}{a}{}{, }
 % \usepackage{inlinebib}
@@ -84,7 +86,7 @@ plainpages = false,
 
 \section*{Introduction}
 
-Integrating Digital Papyrology (IDP) is a joint project among a number of institutions aimed at improving and combining the relationships between three digital papyrological resources: the Duke Databank of Documentary Papyri (DDbDP), the Heidelberger Gesamtverzeichnis der griechischen Papyrusurkunden \"{A}gyptens (HGV), and the Advanced Papyrological Information System (APIS). Started in 1983, the DDbDP digitally collects a number of transcriptions of ancient documentary papyri from print editions. HGV and APIS, meanwhile, collect metadata (findspots, dates, etc.) and images of much of the same material. The benefits of unifying these data sources should be obvious, and in 2007 the Scholarly Communications Division of the Andrew W. Mellon Foundation funded a project, “Integrating Digital Papyrology,” to do just that. Over the years the DDbDP has undergone a number of transitions, and this project also supported its transition from idiosyncratic SGML to standards-based EpiDoc XML\footnote{\url{http://epidoc.sourceforge.net/}}. In addition the grant provided funding to improve and finish the first generation of a tool for searching and browsing the unified collection of materials, called the Papyrological Navigator (or PN). At the conclusion of the IDP grant, Mellon funded a second phase of the project (called IDP2) with the following goals\footnote{\url{http://idp.atlantides.org/trac/idp/wiki/BackgroundAndFunding}}:
+Integrating Digital Papyrology (IDP) is a joint project among a number of institutions aimed at improving and combining the relationships between three digital papyrological resources: the Duke Databank of Documentary Papyri (DDbDP), the Heidelberger Gesamtverzeichnis der griechischen Papyrusurkunden \"{A}gyptens (HGV), and the Advanced Papyrological Information System (APIS). Started in 1983, the DDbDP digitally collects a number of transcriptions of ancient documentary papyri from print editions. HGV and APIS, meanwhile, collect metadata (findspots, dates, etc.) and images of much of the same material. The benefits of unifying these data sources should be obvious, and in 2007 the Scholarly Communications Division of the Andrew W. Mellon Foundation funded a project, “Integrating Digital Papyrology,” to do just that. Over the years the DDbDP has undergone a number of transitions, and this project also supported its transition from an idiosyncratic SGML encoding to standards-based EpiDoc\footnote{\url{http://epidoc.sourceforge.net/}} XML markup. In addition the grant provided funding to improve and finish the first generation of a tool for searching and browsing the unified collection of materials, called the Papyrological Navigator (or PN). At the conclusion of the IDP grant, Mellon funded a second phase of the project (called IDP2) with the following goals\footnote{\url{http://idp.atlantides.org/trac/idp/wiki/BackgroundAndFunding}}:
 \begin{quote}
   \begin{enumerate}
     \item Improve operability of the PN search interface on the merged and mapped data from the DDbDP, HGV, and APIS.
@@ -97,18 +99,31 @@ Integrating Digital Papyrology (IDP) is a joint project among a number of instit
 
 Though collaborative online editing environments such as Wikipedia have the advantage of allowing anyone to contribute, many question the scholarly integrity of resources which can be edited by anyone unvetted. The Suda On-Line, which actually predated the existence of Wikipedia by two years, addressed this problem by marking submitted translations with their level of editorial vetting \citep{finkel}. This combination of openness to contribution with strong editorial control was the guiding principle in the design of the Son of Suda On-Line.
 
-However, even more than SOL, the papyrological projects encompassed in Integrating Digital Papyrology value the scholarly integrity of data published under their aegis. Thus, SoSOL attempts to digitally replicate \textit{in omnibus} the traditional scholarly mechanisms of peer review these projects would normally enforce. This results in somewhat of an inversion of where and how editorial control is placed in comparison with SOL. While SOL users are authorized by editors during registration and are assigned work or must request a specific entry \citep{mahoney}, in SoSOL users are not screened and at present work on whatever they feel needs emendation or inclusion in the corpus. However, this latter distinction in approaches may simply arise naturally from the differing natures of the texts involved; whereas the Suda, while large, is a bounded unit of work, papyri do not yet show signs of slowing their expanding numbers of transcription and publication.
+However, even more than SOL, the papyrological projects encompassed in Integrating Digital Papyrology value the scholarly integrity of data published under their aegis. Thus, SoSOL attempts to digitally replicate the traditional scholarly mechanisms of peer review these projects would normally enforce. This results in somewhat of an inversion of where and how editorial control is exerted in comparison with SOL. While SOL users are authorized by editors during registration and are assigned work or must request a specific entry \citep{mahoney}, in SoSOL users are not screened and at present work on whatever they feel needs emendation or inclusion in the corpus. However, this distinction in the assignment of work may just arise naturally from the differing natures of the texts involved; whereas the Suda—while large—is a bounded unit of work, papyri do not yet show signs of slowing their expanding numbers of transcription and publication.
 
-Standing in starker contrast is how submissions which have not received editorial oversight are handled: in SOL, they are immediately publicly accessible and marked as “draft”; in SoSOL, submissions undergo review and voting by an editorial board before publication as “canonical”.
+Standing in starker contrast is how submissions which have not received editorial oversight are handled: in SOL, they are immediately publicly accessible and marked as “draft”; in SoSOL, submissions undergo review and voting by an editorial board before publication as “canonical”. This may seem restrictive, or even contradictory to claims of openness. It is indeed the former, but only inasmuch as the editorial boards are  controlling the quality of what they are willing to put their names to in the tradition of peer review. The latter requires some discussion.
 
-\subsection*{Data}
+\subsection*{Data and Openness}
+
+\begin{quote}
+“We no longer see IDP as representing at any given moment a synthesis of fixed data sources directed by a central management; rather, we see it as a constantly changing set of fully open data sources governed by the scholarly community and maintained by all active scholars who care to participate. One might go so far as to say that we see this nexus of papyrological resources as ceasing to be “projects” and turning instead into a community.”
+\end{quote}\attrib{\citealt{bagnall}}
+
+What do we mean here by “fully open”?
+
+On one level, it is the terms under which data is published.
+Though asserting any sort of copyright on the 2,000-year-old texts themselves is perhaps nonsensical (at least in the US\footnote{See \emph{Bridgeman Art Library v. Corel Corp.}}), the complete set of IDP XML files are published with a Creative Commons Attribution 3.0 License\footnote{\url{http://creativecommons.org/licenses/by/3.0/}}, explicitly permitting the typical varieties of scholarly reuse and citation anticipated for the data. (Atypical and unanticipated forms of reuse would be even more exciting.)
+
+On another level, it is the \emph{manner} in which data is published. For collaborative online projects, this is typically a challenge. If the data is constantly changing, how do you publish it in any traditional sense? Perhaps even more challenging is this: how do you publish the changes themselves, both retroactively and proactively?
+
+By retroactively, we mean that the revision history of the data up to the present may itself be important; by proactively we mean that if a user has already obtained the complete revision history at some point in time, it is better to allow them to simply download the changes since that point. Many online collaborative environments, such as MediaWiki and the original SOL, store all changes in a database system. This usually makes distribution of the complete revision history, particularly proactive distribution, extremely difficult. As an example, the English Wikipedia was unable to distribute its complete dataset for several years, and only most recently able to dump its revision history in January 2010, with no successful exports since\footnote{\url{http://en.wikipedia.org/w/index.php?title=Wikipedia:Database_download&oldid=393163797\#Latest_complete_dump_of_English_Wikipedia}}. Even if they were able to do so, the only mechanism for updating such a data dump is to download the entire several-hundred-gigabyte file each time.
+
+\subsection*{Next-Generation Version Control}
 
 \footnote{\url{http://sourceforge.net/projects/sosol/}}
-Creative Commons Attribution 3.0 License\footnote{\url{http://creativecommons.org/licenses/by/3.0/}}
 
-Test\footnote{\url{http://en.wikipedia.org/w/index.php?title=Wikipedia:Database_download&oldid=393163797\#Latest_complete_dump_of_English_Wikipedia}}
 
-\section*{Alternative Syntax for XML Editing}
+\subsection*{Alternative Syntax for XML Editing}
 
 \begin{figure}
     \begin{verbatim}
@@ -167,7 +182,7 @@ Test\footnote{\url{http://en.wikipedia.org/w/index.php?title=Wikipedia:Database_
   </ab>
 </div>
   \end{verbatim}
-  \caption{EpiDoc XML equivalent to the preceding Leiden+\label{epidoc}}
+  \caption{EpiDoc XML fragment equivalent to the preceding Leiden+\label{epidoc}}
 \end{figure}
 
 \bibliographystyle{plainnat}
