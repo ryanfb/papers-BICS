@@ -143,9 +143,11 @@ Some discussion of how Git works and internally represents version history is pe
 
 The simplest instance of version history (in Git, and conceptually) is a single piece of content with one version. Bare content is the “blob” object in Git, and has no additional metadata associated with it — these can be thought of as leaf nodes in the graph (that is, nodes which do not point to other nodes).
 
-However, a single version of a single file is not very useful for most projects. Git organizes multiple blob objects into a file structure using tree objects. These tree objects are simple plaintext files which list identifying hashes with their filenames. Each tree object represents a single directory; for subdirectories, trees can point to other tree objects in addition to blobs, as in Figure \ref{gittree}.
+However, having just one file is not very useful for most projects. Git organizes and collects multiple blob objects into a file structure using tree objects. These tree objects are simple plaintext files which list identifying hashes with their filenames. Each tree object represents a single directory; for subdirectories, trees can point to other tree objects in addition to blobs, as in Figure \ref{gittree}.
 
-Revisions in Git are stored as commit objects. These point to a single tree, and contain metadata about the commit (such as author, time, commit message) as well as pointers to one or more parent commit objects. 
+Revisions in Git are stored as commit objects. These point to a single tree, and contain metadata about the commit (such as author, time, commit message) as well as pointers to one or more parent commit objects. Thus, a simple merge would have two parent commits, while a branch or fork would be two different commits pointing to the same commit. The fact that all of this history is stored as a connected graph is what allows the Git system itself to examine things such as where a fork occurred when attempting to merge concurrent changes, and intelligently make the right decision based on the chosen merge strategy.
+
+Let's walk through a simple linear commit history to illustrate things, winding up with the graph shown in Figure \ref{gitcommit}:
 
 \begin{figure}[h]
   \centering
@@ -156,6 +158,11 @@ Revisions in Git are stored as commit objects. These point to a single tree, and
     {Visualizations of Git's internal graph structure. Red squares are blobs, blue are trees, green are commits. Text in the top-left corner is the object's truncated hash.}
 \end{figure}
 
+\begin{enumerate}
+\item We start our project with just a \texttt{README} file containing the string “text”. Since we want to record this momentous occasion, we commit the state of our repository with the commit message “first commit”. This commit points to the hash of the tree, which contains the hash of our \texttt{README}.
+\item Since this project is sure to be our magnum opus, we quickly decide we want to immortalize contributors by crediting them in an \texttt{AUTHORS} file. We write this out and hastily make a new commit to add it. Since the \texttt{README} is unchanged, the same object from before is reused. However, because we have added a new file, the tree has changed, so a new tree object is made for the commit to point to.
+\item Later, the mood strikes us to update the \texttt{README} so we do so and make a new commit. Again, a new blob object is constructed for the new content, although this time the \texttt{AUTHORS} blob is able to be reused because we didn't modify it.
+\end{enumerate}
 \subsection*{Data Sources, Publications, and Workflow}
 
 As outlined in the introduction, IDP represents the synthesis of a variety of papyrological projects managed by different institutions. This has informed SoSOL's design in how it interacts with and models these disparate data sources.
