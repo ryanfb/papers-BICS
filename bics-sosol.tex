@@ -163,6 +163,9 @@ Let's walk through a simple linear commit history to illustrate things, winding 
 \item Since this project is sure to be our magnum opus, we quickly decide we want to immortalize contributors by crediting them in an \texttt{AUTHORS} file. We write this out and hastily make a new commit to add it. Since the \texttt{README} is unchanged, the same object from before is reused. However, because we have added a new file, the tree has changed, so a new tree object is made for the commit to point to.
 \item Later, the mood strikes us to update the \texttt{README} so we do so and make a new commit. Again, a new blob object is constructed for the new content, although this time the \texttt{AUTHORS} blob is able to be reused because we didn't modify it.
 \end{enumerate}
+
+Though there are many other facets to it, this is the core of Git.
+
 \subsection*{Data Sources, Publications, and Workflow}
 
 As outlined in the introduction, IDP represents the synthesis of a variety of papyrological projects managed by different institutions. This has informed SoSOL's design in how it interacts with and models these disparate data sources.
