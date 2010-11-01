@@ -64,7 +64,7 @@ plainpages = false,
 \fi
 
 \usepackage{fontspec,xunicode}
-\setmainfont{Cardo}
+\setmainfont[ItalicFont={Baskerville-Italic}]{Cardo}
 \setmonofont[Scale=0.9]{Lucida Grande}
 
 \title{The Son of Suda On-Line}
@@ -91,11 +91,22 @@ Integrating Digital Papyrology (IDP) is a joint project among a number of instit
     \item Facilitate third-party use of the data and tools.
     \item Create a version controlled, transparent and fully audited, multi-author, web-based, real-time, tagless, editing environment, which — in tandem with a new editorial infrastructure — will allow the entire community of papyrologists to take control of the process of populating these communal assets with data.
   \end{enumerate}
-\end{quote}The environment described in the last item, inspired by the Suda On-Line\footnote{The Suda On-Line (\url{http://www.stoa.org/sol/}) is a project aimed at collaborative translation of the massive 10th century Byzantine encyclopedia known as the \emph{Suda}.}, was named the Son of Suda On-Line (SoSOL). Though it takes its name and inspiration from SOL, SoSOL was written from the ground up to incorporate new technologies, address project-specific problems, and move toward more open data and tooling \citep{background, sosin}.
+\end{quote}The environment described in the last item, inspired by the Suda On-Line\footnote{The Suda On-Line (\url{http://www.stoa.org/sol/}) is a project aimed at collaborative translation of the massive 10th century Byzantine encyclopedia known as the \emph{Suda}.}, was named the Son of Suda On-Line (SoSOL). Though it takes its name and inspiration from SOL, SoSOL was written from the ground up to incorporate new technologies, address project-specific problems, and move toward more open data and tooling \citep{background, sosin}. This article aims at not only a description of the resulting software, but also of the challenges encountered and solutions chosen in its formulation, to encourage broader adoption or discussion of both.
 
 \section*{The Son of Suda On-Line}
 
+Though collaborative online editing environments such as Wikipedia have the advantage of allowing anyone to contribute, many question the scholarly integrity of resources which can be edited by anyone unvetted. The Suda On-Line, which actually predated the existence of Wikipedia by two years, addressed this problem by marking submitted translations with their level of editorial vetting \citep{finkel}. This combination of openness to contribution with strong editorial control was the guiding principle in the design of the Son of Suda On-Line.
+
+However, even more than SOL, the papyrological projects encompassed in Integrating Digital Papyrology value the scholarly integrity of data published under their aegis. Thus, SoSOL attempts to digitally replicate \textit{in omnibus} the traditional scholarly mechanisms of peer review these projects would normally enforce. This results in somewhat of an inversion of where and how editorial control is placed in comparison with SOL. While SOL users are authorized by editors during registration and are assigned work or must request a specific entry \citep{mahoney}, in SoSOL users are not screened and at present work on whatever they feel needs emendation or inclusion in the corpus. However, this latter distinction in approaches may simply arise naturally from the differing natures of the texts involved; whereas the Suda, while large, is a bounded unit of work, papyri do not yet show signs of slowing their expanding numbers of transcription and publication.
+
+Standing in starker contrast is how submissions which have not received editorial oversight are handled: in SOL, they are immediately publicly accessible and marked as “draft”; in SoSOL, submissions undergo review and voting by an editorial board before publication as “canonical”.
+
+\subsection*{Data}
+
 \footnote{\url{http://sourceforge.net/projects/sosol/}}
+Creative Commons Attribution 3.0 License\footnote{\url{http://creativecommons.org/licenses/by/3.0/}}
+
+Test\footnote{\url{http://en.wikipedia.org/w/index.php?title=Wikipedia:Database_download&oldid=393163797\#Latest_complete_dump_of_English_Wikipedia}}
 
 \section*{Alternative Syntax for XML Editing}
 
