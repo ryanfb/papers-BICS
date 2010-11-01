@@ -131,6 +131,12 @@ That a DVCS makes these things trivial also represents a significant decision in
 
 Thus the fact that IDP now uses Git for its public data repository, in combination with the license the data is distributed under, represents the complete realization of “a constantly changing set of fully open data sources governed by the scholarly community and maintained by all active scholars who care to participate.” For us, “participate” in fact has two senses: participating within \emph{our} system (that is, participating in our editorial review process), or participating in any enterprise you choose with the complete dataset which we make freely available.
 
+\section*{Implementation}
+
+The Son of Suda On-Line tool itself is written in Ruby using the popular Rails web framework. Instead of the mainline Ruby interpreter written in C (usually referred to as Matz's Ruby Interpreter, or MRI, after the language's creator), we use a Java implementation called JRuby. Though this was initially done to enable deployment of SoSOL in any Java Servlet Container such as Tomcat, SoSOL has come to use a number of Java libraries (particularly for interacting with XML data), facilitated by JRuby's tight Java integration.
+
+
+
 \begin{figure}
   \centering
   \includegraphics[width=6in]{images/TopLevelDataFlow4Proposal-HAC.pdf}
@@ -198,6 +204,8 @@ Thus the fact that IDP now uses Git for its public data repository, in combinati
   \end{verbatim}
   \caption{EpiDoc XML fragment equivalent to the preceding Leiden+\label{epidoc}}
 \end{figure}
+
+\section*{Conclusions}
 
 \bibliographystyle{plainnat}
 \bibliography{bics-sosol}
