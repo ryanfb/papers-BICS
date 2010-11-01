@@ -46,6 +46,8 @@ plainpages = false,
 }
 
 \usepackage{attrib}
+\usepackage{wrapfig}
+\usepackage{subfig}
 
 \usepackage{natbib}
 \bibpunct{(}{)}{;}{a}{}{, }
@@ -68,7 +70,7 @@ plainpages = false,
 \usepackage{fontspec,xunicode}
 %\setmainfont[ItalicFont={Baskerville-Italic}]{Cardo}
 \setmainfont{Adobe Garamond Pro}
-\setmonofont[Scale=0.9]{Lucida Grande}
+\setmonofont[Scale=0.8]{Lucida Grande}
 
 \title{The Son of Suda On-Line}
 \author{Ryan Baumann}
@@ -135,9 +137,30 @@ Thus the fact that IDP now uses Git for its public data repository, in combinati
 
 The Son of Suda On-Line tool itself is written in Ruby using the popular Rails web framework. Instead of the mainline Ruby interpreter written in C (usually referred to as Matz's Ruby Interpreter, or MRI, after the language's creator), we use a Java implementation called JRuby. Though this was initially done to enable deployment of SoSOL in any Java Servlet Container such as Tomcat, SoSOL has come to use a number of Java libraries (particularly for interacting with XML data), facilitated by JRuby's tight Java integration.
 
+\subsection*{Git Internals}
 
+Some discussion of how Git works and internally represents version history is perhaps necessary to illustrate how its design enables and informs other design decisions in SoSOL. In Git, the version history of a project is encoded as a directed graph of three kinds of internal objects, all of which are identified by the unique SHA-1 hash of the object's content. These objects form the “nodes” in Git's graph, their contents contain the directional arrows linking them together.
 
-\begin{figure}
+The simplest instance of version history (in Git, and conceptually) is a single piece of content with one version. Bare content is the “blob” object in Git, and has no additional metadata associated with it — these can be thought of as leaf nodes in the graph (that is, nodes which do not point to other nodes).
+
+However, a single version of a single file is not very useful for most projects. Git organizes multiple blob objects into a file structure using tree objects. These tree objects are simple plaintext files which list identifying hashes with their filenames. Each tree object represents a single directory; for subdirectories, trees can point to other tree objects in addition to blobs, as in Figure \ref{gittree}.
+
+Revisions in Git are stored as commit objects. These point to a single tree, and contain metadata about the commit (such as author, time, commit message) as well as pointers to one or more parent commit objects. 
+
+\begin{figure}[h]
+  \centering
+  \subfloat[A tree graph in Git]{\label{gittree}\includegraphics[height=2in]{images/tree.pdf}}
+  \qquad
+  \subfloat[A series of commits in Git]{\label{gitcommit}\includegraphics[height=2in]{images/commits.pdf}}
+  \caption[]%
+    {Visualizations of Git's internal graph structure. Red squares are blobs, blue are trees, green are commits. Text in the top-left corner is the object's truncated hash.}
+\end{figure}
+
+\subsection*{Data Sources, Publications, and Workflow}
+
+As outlined in the introduction, IDP represents the synthesis of a variety of papyrological projects managed by different institutions. This has informed SoSOL's design in how it interacts with and models these disparate data sources.
+
+\begin{figure}[h]
   \centering
   \includegraphics[width=6in]{images/TopLevelDataFlow4Proposal-HAC.pdf}
   \caption{Software components and data flow at the conclusion of IDP2\label{dataflow}}
@@ -204,6 +227,9 @@ The Son of Suda On-Line tool itself is written in Ruby using the popular Rails w
   \end{verbatim}
   \caption{EpiDoc XML fragment equivalent to the preceding Leiden+\label{epidoc}}
 \end{figure}
+
+
+
 
 \section*{Conclusions}
 
