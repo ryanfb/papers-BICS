@@ -131,7 +131,7 @@ As a result of using a DVCS for the data backend, it is possible to use Git not 
 
 That a DVCS makes these things trivial also represents a significant decision in the design of SoSOL: for the “canonical” data repository it interacts with, it does not need to care about any external mechanisms or workflows used to introduce changes. SoSOL only needs to keep track of changes within its domain; it is merely a front-end and social infrastructure for easing and managing contributions. When a user edits data in SoSOL, it is forked from the main repository to allow them to do their work without interruption. They then submit their changes for editorial review, and when they pass muster they are merged back into the canonical repository. However, the repository may be updated by any external process in the interim, typically without drastically impacting the work that must be done to perform the merge.
 
-Thus the fact that IDP now uses Git for its public data repository, in combination with the license the data is distributed under, represents the complete realization of “a constantly changing set of fully open data sources governed by the scholarly community and maintained by all active scholars who care to participate.” For us, “participate” in fact has two senses: participating within \emph{our} system (that is, participating in our editorial review process), or participating in any enterprise you choose with the complete dataset which we make freely available.
+Thus, the fact that IDP now uses Git for its public data repository, in combination with the license the data is distributed under, represents the complete realization of “a constantly changing set of fully open data sources governed by the scholarly community and maintained by all active scholars who care to participate.” For us, “participate” in fact has two senses: participating within \emph{our} system (that is, participating in our editorial review process), or participating in any enterprise you choose with the complete dataset which we make freely available.
 
 \section*{Implementation}
 
@@ -139,7 +139,7 @@ The Son of Suda On-Line environment itself is written in Ruby using the popular 
 
 \subsection*{Git Internals}
 
-Some discussion of how Git works and internally represents version history is perhaps necessary to illustrate how its design enables and informs other design decisions in SoSOL. In Git, the version history of a project is encoded as a directed graph of three kinds of internal objects, all of which are identified by the unique SHA-1 hash of the object's content. These objects form the “nodes” in Git's graph, their contents contain the directional arrows linking them together.
+Some discussion of how Git works and internally represents version history is perhaps necessary to illustrate how its design enables and informs other design decisions in SoSOL. In Git, the version history of a project is encoded as a directed graph of three kinds of internal objects, all of which are identified by the unique SHA-1 hash of the object's content.\footnote{Think of the SHA-1 hash as a 160-bit number that uniquely identifies any given input string. Even a small change in the string results in a very different hash, and collisions are designed to be rare.} These objects form the “nodes” in Git's graph, while their contents contain the directional arrows linking them together.
 
 The simplest instance of version history (in Git, and conceptually) is a single piece of content with one version. Bare content is the “blob” object in Git, and has no additional metadata associated with it — these can be thought of as leaf nodes in the graph (that is, nodes which do not point to other nodes).
 
@@ -164,7 +164,9 @@ Let's walk through a simple linear commit history to illustrate things, winding 
 \item Later, the mood strikes us to update the \texttt{README} so we do so and make a new commit. Again, a new blob object is constructed for the new content, although this time the \texttt{AUTHORS} blob is able to be reused because we didn't modify it.
 \end{enumerate}
 
-Though there are many other facets to it, this is the core of Git.
+Though there are many other facets and features, this is the core of Git.
+
+The consequence of all objects being identified by a unique hash of their contents means these objects can easily be shared between copies of the repository — knowing both that there won't be conflicts between objects with different content having the same hash, and that the same object will have the same hash no matter where it is. Since all links between objects are part of the hashed content, any change in the graph would result in a cascade of changing hashes (as in step three of our example, where changing the \texttt{README} changes the blob object's hash, which means the tree object must store the new hash and receive a new hash itself). Because Git verifies and uses these hashes for its own operation, the integrity of the repository is incredibly robust; if you have a copy of the repository, and someone tries to rewrite history by removing an object which is already referenced, you will notice when you try to pull their changes because all descendant objects will have different hashes from yours.
 
 \subsection*{Data Sources, Publications, and Workflow}
 
