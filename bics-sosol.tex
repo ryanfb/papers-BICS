@@ -180,6 +180,8 @@ SoSOL uses the “publication” as the unit of work for the editorial workflow 
 
 Because of Git's design, SoSOL is actually able to maintain a separate Git repository for each user and editorial board in its backend. Despite the fact that IDP's canonical data repository is around 1GB in size, each copy can be on the order of kilobytes because it can simply reference objects already stored in the repository it's been forked from. This means that when a user begins editing a publication, the branch for that publication is made on their copy of the repository, and only new objects which they create in the course of making updates must be stored in it. When they submit the publication, this branch and its related objects are copied to the board's repository, and when they approve the publication they then merge this branch back into the canonical data repository. Eventually, this design could be integrated with a Git server (in the style of GitHub\footnote{\url{http://github.com/}}), allowing each user to have direct access to their own Git repository to easily make changes using any process they choose before submission.
 
+Another advantage of Git's design is that accurate, transparent attribution is easily maintained in the history of each piece of data. Interventions made by the editorial board after submission are preserved as being authored by them rather than by the submitter. Because Git allows a distinction between “author” (who wrote a commit) and “committer” (who put a given commit in the repository), we can record which editor made the merge to the canonical repository without losing information about who actually  authored the underlying changes. We also record the members of the editorial board at the time a submission is accepted, by adding that they've signed off to the commit message.
+
 \begin{figure}[h]
   \centering
   \includegraphics[width=6in]{images/TopLevelDataFlow4Proposal-HAC.pdf}
@@ -191,6 +193,16 @@ The advantage of this is that the core design of SoSOL deals mainly with this id
 SoSOL itself manages the complex relationships between identifiers in IDP by interfacing with a piece of software developed for the project which we call the Numbers Server. This is implemented as an RDF triplestore which is built up by processing the entire canonical IDP dataset and looking for associations. SoSOL can then simply query any single identifier in the Numbers Server to find all other identifiers related to it in order to aggregate them into a logical publication. The relationships and data flow between SoSOL, the Papyrological Navigator, and the Numbers Server are illustrated in Figure \ref{dataflow}.
 
 \subsection*{Alternative Syntax for XML Editing}\nocite{xsugar}
+
+One of the proposed items for the SoSOL environment was to provide a “tagless” editing environment for the EpiDoc XML data used by IDP. For metadata, where there is some fixed number of possible elements, this can be achieved by simply presenting the user with a form specific to the needed data types which translates to and from XML. This is what we have done for HGV metadata, as shown in Figure \ref{hgvmeta}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/hgvmeta.png}
+  \caption{HGV metadata entry form in SoSOL\label{hgvmeta}}
+\end{figure}
+
+However, for freeform text transcriptions like those recorded by the DDbDP, the concept of a “tagless” environment is more challenging. Because many papyrological materials are damaged and difficult to read, scholarly transcriptions record a number of things about the reading of the text itself. If letters of a word can't be made out on the object, but you can interpolate from context what they likely were, you should indicate that your restoration is a result of that process. This happens so often when editing papyrological texts that a shorthand for indicating them in the text itself was developed  and, in a 1931 meeting at the University of Leiden, standardized as a set of rules called the Leiden conventions.
 
 \begin{figure}[ht]
     \begin{verbatim}
