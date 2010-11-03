@@ -222,7 +222,7 @@ We call our non-XML representation of EpiDoc markup “Leiden+”, as it attempt
 
 Though Leiden+ must in some cases be more verbose than traditional Leiden, this is due to the fact that Leiden+ must be able to be transformed into unambiguous, valid EpiDoc XML. For example, on line three, expanded abbreviations use nested parentheses instead of a single pair around just the expansion, because the unit of text which is being expanded must be marked up as well. Because multiple standalone Unicode combining underdots (indicating vestiges of illegible characters, as in line one of the example text) can be confusing to type and count by themselves, Leiden+ simply uses a period followed by the number of characters. However, for characters which are unclear but can be inferred from context (as in “\texttt{ῦ}” of
 “\texttt{αὐτοῦ}”
-at the end of line 3), Leiden+ preserves the combining underdot for readability, and we provide a JavaScript helper for inserting the character (a screenshot of Leiden+ as it appears with helpers in the editing environment is shown in Figure \ref{leidenedit}). Users can, of course, still edit the XML directly, with an easy button provided to copy the entire content of each text area to their clipboard so they can paste it into their own editor.
+at the end of line 3), Leiden+ preserves the combining underdot for readability, and we provide a JavaScript helper for inserting the character (a screenshot of Leiden+ as it appears with helpers in the editing environment is shown in Figure \ref{leidenedit}). Users can, of course, still edit the XML directly, with a button provided to copy the entire content of each text area to their clipboard so they can paste it into their own editor.
 
 \begin{figure}[!hbt]
     \begin{verbatim}
@@ -292,7 +292,9 @@ at the end of line 3), Leiden+ preserves the combining underdot for readability,
 
 \section*{Conclusions}
 
-While Leiden+ does take some experience to get used to, in EpiDoc training seminars where we have introduced students and papyrologists to using it as an alternative for editing XML, the response thus far has been great. Users have entered and submitted hundreds of new texts for inclusion in the DDbDP using the production version of SoSOL running on papyri.info, dubbed the Papyrological Editor.\footnote{\url{http://papyri.info/editor/}} Nearly 5,000 commits have been made since the transition of IDP to using Git for its data backend.
+While Leiden+ does take some experience to get used to, in EpiDoc training seminars where we have introduced students and papyrologists to using it as an alternative for editing XML, the response thus far has been great. Users have entered and submitted hundreds of new texts for inclusion in the DDbDP using the production version of SoSOL running on papyri.info, dubbed the Papyrological Editor.\footnote{\url{http://papyri.info/editor/}} Nearly 5,000 commits have been made since the transition of IDP to using Git for its data backend, many through SoSOL.
+
+We believe that exposing our complete dataset and its history to the community is the best approach to enabling true community ownership of the data. Using a DVCS for our data backend in the editing environment instead of a traditional relational database backend is what allows us to do this with very little friction, and facilitates direct interaction with the data repository without necessitating going through our project-specific editing environment. That the system preserves attribution at every step will, we hope, foster a sense that users do have some investment and ownership in their contributions.
 
 \bibliographystyle{plainnat}
 \bibliography{bics-sosol}
