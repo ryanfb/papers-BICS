@@ -182,9 +182,9 @@ Because of Git's design, SoSOL is actually able to maintain a separate Git repos
 
 Another advantage of Git's design is that accurate, transparent attribution is easily maintained in the history of each piece of data. Interventions made by the editorial board after submission are preserved as being authored by them rather than by the submitter. Because Git allows a distinction between “author” (who wrote a commit) and “committer” (who put a given commit in the repository), we can record which editor made the merge to the canonical repository without losing information about who actually  authored the underlying changes. We also record the members of the editorial board at the time a submission is accepted, by adding that they've signed off to the commit message.
 
-\begin{figure}[h]
+\begin{figure}[!h]
   \centering
-  \includegraphics[width=6in]{images/TopLevelDataFlow4Proposal-HAC.pdf}
+  \includegraphics[width=\textwidth]{images/TopLevelDataFlow4Proposal-HAC.pdf}
   \caption{Software components and data flow at the conclusion of IDP2\label{dataflow}}
 \end{figure}
 
@@ -196,7 +196,7 @@ SoSOL itself manages the complex relationships between identifiers in IDP by int
 
 One of the proposed items for the SoSOL environment was to provide a “tagless” editing environment for the EpiDoc XML data used by IDP. For metadata, where there is some fixed number of possible elements, this can be achieved by simply presenting the user with a form specific to the needed data types which translates to and from XML. This is what we have done for HGV metadata, as shown in Figure \ref{hgvmeta}.
 
-\begin{figure}[h]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.8\textwidth]{images/hgvmeta.png}
   \caption{HGV metadata entry form in SoSOL\label{hgvmeta}}
@@ -204,7 +204,7 @@ One of the proposed items for the SoSOL environment was to provide a “tagless�
 
 However, for freeform text transcriptions like those recorded by the DDbDP, the concept of a “tagless” environment is more challenging. Because many papyrological materials are damaged and difficult to read, scholarly transcriptions record a number of things about the reading of the text itself. If letters of a word can't be made out on the object, but you can interpolate from context what they likely were, you should indicate that your restoration is a result of that process. This happens so often when editing papyrological texts that a shorthand for indicating them in the text itself was developed  and, in a 1931 meeting at the University of Leiden, standardized as a set of rules called the Leiden conventions.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
     \begin{verbatim}
 [ἔτους α (?) Αὐτοκράτορος]   ̣  ̣[  ̣]  ̣  ̣του 
 [- ca.12 -] Σεβαστοῦ 
@@ -218,7 +218,7 @@ However, for freeform text transcriptions like those recorded by the DDbDP, the 
     \caption{Typical print transcription following Leiden conventions (P.Sijp., 41a)\label{leiden}}
 \end{figure}\nocite{psijp}
 
-\begin{figure}[h]
+\begin{figure}[!h]
     \begin{verbatim}
 1. [ἔτους] [<#α=1#> (?)] [Αὐτοκράτορος] .2[.1].2του
 2. [ca.12] Σεβαστοῦ
@@ -232,7 +232,7 @@ However, for freeform text transcriptions like those recorded by the DDbDP, the 
     \caption{Leiden+ representation of the same text\label{leidenp}}
 \end{figure}
 
-\begin{figure}[hb]
+\begin{figure}[!hb]
   \begin{verbatim}
 <div xml:lang="grc" type="edition" xml:space="preserve">
   <ab>
