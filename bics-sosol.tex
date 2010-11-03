@@ -206,15 +206,19 @@ However, for freeform text transcriptions like those recorded by the DDbDP, the 
 
 EpiDoc is a TEI-based XML encoding standard for marking up the same sort of textual semantics represented in Leiden, with additional standardized markup for other features typically needed when encoding ancient texts. For example, numbers which are written as Greek text can be marked semantically as numbers with their value, orthographic corrections can have both the normalized and original word linked, and so forth. Thus the key advantage of EpiDoc is it acts as a superset of Leiden with explicit, computationally-actionable, semantics.
 
-Because we have our transcriptions already encoded in EpiDoc, we wanted to surface these facets of it to users, without burdening them with the full verbosity of XML markup. We also wanted them to be able to explicitly mark up new texts in the same environment. We contemplated trying to use the \texttt{contentEditable} HTML attribute to provide a sort of “rich text” what-you-see-is-what-you-get (WYSIWYG) text entry form. However, browser implementations of this feature vary wildly in behavior and often confound user expectations, and what exactly the meaning of “WYSIWYG” is when you're semantically marking up things such as numbers is debatable.
+Because we have our transcriptions already encoded in EpiDoc, we wanted to surface these facets of it to users, without burdening them with the full verbosity of XML markup. We also wanted them to be able to explicitly mark up new texts in the same environment. We contemplated trying to use the \texttt{contentEditable} HTML attribute to provide a sort of “rich text” what-you-see-is-what-you-get (WYSIWYG) text entry form. However, browser implementations of this feature vary wildly in behavior and often confound user expectations, and what exactly the meaning of “WYSIWYG” is when semantically marking up things such as numbers is debatable.
 
 As a result, we decided to use a simple plaintext form element utilizing a transformation of the XML to make the text more legible and easier to edit quickly. Of course, to update the modified plaintext would require a transformation back to XML to save it in our system. One way to do this would be to write two separate transform processes, one from XML to plaintext, and one from plaintext to XML. However, verifying and maintaining such a process would be difficult.
 
-Instead, we use a tool called XSugar\footnote{\url{http://www.brics.dk/xsugar/}} to perform both directions of the XML transform. This utility allows you to define a single context-free grammar where each rule has both an XML representation and a non-XML representation. Thus it can parse either representation into an intermediate form, and then use the same ruleset to output the opposite representation. Additionally, the tool can check that this transformation is reversible — that is, round-trips of a given input do not alter it \citep{xsugar}.
+Instead, we use a tool called XSugar\footnote{\url{http://www.brics.dk/xsugar/}} to perform both directions of the XML transform. This utility allows you to define a single context-free grammar where each rule has both an XML representation and a non-XML representation. Thus it can parse either representation into an intermediate form, and then use the same ruleset to output the opposite representation. Additionally, the tool can check that this transformation is reversible — that is, round-trips of a given input do not alter it \citep{xsugar}. Due to the immense size of the DDbDP corpus (over 55,000 transcriptions), we use automated nightly runs of transformations on the entire corpus to verify and improve both our definition of the Leiden+ grammar as well as reduce encoding errors in the source XML (many being difficult edge cases left over from the transitioning of the DDbDP from SGML to EpiDoc). We also use an XML normalization process to reduce the amount of “thrashing” in the version history — small changes to the text shouldn't alter unrelated parts of the XML and make it hard to spot the actual change when looking through the file's history.
 
-We call our non-XML representation of EpiDoc markup “Leiden+”, as it attempts to use the same symbols as Leiden where possible, but is also able to unambiguously represent the additional markup enabled by EpiDoc encoding.
+We call our non-XML representation of EpiDoc markup “Leiden+”, as it attempts to use the same symbols as Leiden where possible, but is also able to unambiguously represent the additional markup enabled by EpiDoc encoding. Figures \ref{leiden} and \ref{epidoc} illustrate how a traditional print transcription might be marked up in EpiDoc XML, with Figure \ref{leidenp} being the Leiden+ transformation of that XML. As you can see, things like the Greek letter “\texttt{κ}” on line four being the number “20” are implicit in print, but explicit in both EpiDoc and Leiden+.
 
-\begin{figure}[!ht]
+Though Leiden+ must in some cases be more verbose than traditional Leiden, this is due to the fact that Leiden+ must be able to be transformed into unambiguous, valid EpiDoc XML. For example, on line three, expanded abbreviations use nested parentheses instead of a single pair around just the expansion, because the unit of text which is being expanded must be marked up as well. Because multiple standalone Unicode combining underdots (indicating vestiges of illegible characters, as in line one of the example text) can be confusing to type and count by themselves, Leiden+ simply uses a period followed by the number of characters. However, for characters which are unclear but can be inferred from context (as in “\texttt{ῦ}” of
+“\texttt{αὐτοῦ}”
+at the end of line 3), Leiden+ preserves the combining underdot for readability, and we provide a JavaScript helper for inserting the character.
+
+\begin{figure}[!hbt]
     \begin{verbatim}
 [ἔτους α (?) Αὐτοκράτορος]   ̣  ̣[  ̣]  ̣  ̣του 
 [- ca.12 -] Σεβαστοῦ 
@@ -228,7 +232,7 @@ We call our non-XML representation of EpiDoc markup “Leiden+”, as it attempt
     \caption{Typical print transcription following Leiden conventions (P.Sijp., 41a)\label{leiden}}
 \end{figure}\nocite{psijp}
 
-\begin{figure}[!h]
+\begin{figure}[!hbt]
     \begin{verbatim}
 1. [ἔτους] [<#α=1#> (?)] [Αὐτοκράτορος] .2[.1].2του
 2. [ca.12] Σεβαστοῦ
@@ -239,7 +243,7 @@ We call our non-XML representation of EpiDoc markup “Leiden+”, as it attempt
 7. [ca.6] (μη(τρὸς)) Ταύρεως
 8. [.?] $m2 (σεση(μείωμαι))
     \end{verbatim}
-    \caption{Leiden+ representation of the same text\label{leidenp}}
+    \caption{Leiden+ representation of the P.Sijp., 41a text\label{leidenp}}
 \end{figure}
 
 \begin{figure}[!hbt]
@@ -274,10 +278,9 @@ We call our non-XML representation of EpiDoc markup “Leiden+”, as it attempt
   \caption{EpiDoc XML fragment equivalent to the preceding Leiden+\label{epidoc}}
 \end{figure}
 
-
-
-
 \section*{Conclusions}
+
+While Leiden+ does take some experience to get used to, in EpiDoc training seminars where we have introduced students and papyrologists to using it as an alternative for editing XML, the response thus far has been great. Users have entered and submitted hundreds of new texts for inclusion in the DDbDP using the production version of SoSOL running on papyri.info, dubbed the Papyrological Editor.\footnote{\url{http://papyri.info/editor/}} Nearly 5,000 commits have been made since the transition of IDP to using Git for its data backend.
 
 \bibliographystyle{plainnat}
 \bibliography{bics-sosol}
