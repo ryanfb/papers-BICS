@@ -180,17 +180,17 @@ SoSOL uses the “publication” as the unit of work for the editorial workflow 
 
 Because of Git's design, SoSOL is actually able to maintain a separate Git repository for each user and editorial board in its backend. Despite the fact that IDP's canonical data repository is around 1GB in size, each copy can be on the order of kilobytes because it can simply reference objects already stored in the repository it's been forked from. This means that when a user begins editing a publication, the branch for that publication is made on their copy of the repository, and only new objects which they create in the course of making updates must be stored in it. When they submit the publication, this branch and its related objects are copied to the board's repository, and when they approve the publication they then merge this branch back into the canonical data repository. Eventually, this design could be integrated with a Git server (in the style of GitHub\footnote{\url{http://github.com/}}), allowing each user to have direct access to their own Git repository to easily make changes using any process they choose before submission.
 
-The advantage of this is that the core design of SoSOL deals mainly with this identifier/publication model, and providing functionality for using this abstraction to have an editorial workflow on top of a Git repository. The goal was to make these core components reusable, while providing your own implementations for how your own identifiers are edited and aggregated into publications. One can imagine the simplest implementation as being an identifier whose name is the file path, which just presents the plaintext contents of the file for editing, and which has no relationships with other identifiers so that each publication is a single identifier.
-
-SoSOL itself manages the complex relationships between identifiers in IDP by interfacing with a piece of software developed for the project which we call the Numbers Server. This is implemented as an RDF triplestore which is built up by processing the entire canonical IDP dataset and looking for associations. SoSOL can then simply query any single identifier in the Numbers Server to find all other identifiers related to it in order to aggregate them into a logical publication. The relationships and data flow between SoSOL, the Papyrological Navigator, and the Numbers Server are illustrated in Figure \ref{dataflow}.
-
-\begin{figure}[]
+\begin{figure}[h]
   \centering
   \includegraphics[width=6in]{images/TopLevelDataFlow4Proposal-HAC.pdf}
   \caption{Software components and data flow at the conclusion of IDP2\label{dataflow}}
 \end{figure}
 
-\subsection*{Alternative Syntax for XML Editing}
+The advantage of this is that the core design of SoSOL deals mainly with this identifier/publication model, and providing functionality for using this abstraction to have an editorial workflow on top of a Git repository. The goal was to make these core components reusable, while providing your own implementations for how your own identifiers are edited and aggregated into publications. One can imagine the simplest implementation as being an identifier whose name is the file path, which just presents the plaintext contents of the file for editing, and which has no relationships with other identifiers so that each publication is a single identifier.
+
+SoSOL itself manages the complex relationships between identifiers in IDP by interfacing with a piece of software developed for the project which we call the Numbers Server. This is implemented as an RDF triplestore which is built up by processing the entire canonical IDP dataset and looking for associations. SoSOL can then simply query any single identifier in the Numbers Server to find all other identifiers related to it in order to aggregate them into a logical publication. The relationships and data flow between SoSOL, the Papyrological Navigator, and the Numbers Server are illustrated in Figure \ref{dataflow}.
+
+\subsection*{Alternative Syntax for XML Editing}\nocite{xsugar}
 
 \begin{figure}[ht]
     \begin{verbatim}
