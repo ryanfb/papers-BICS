@@ -192,7 +192,7 @@ The advantage of this is that the core design of SoSOL deals mainly with this id
 
 Under IDP2, SoSOL manages the complex relationships between identifiers by interfacing with a piece of software developed for the project which we call the Numbers Server. This is implemented as an RDF triplestore which is built up by processing the entire canonical IDP dataset and looking for associations between resources. SoSOL can then simply query any single identifier in the Numbers Server to find all other identifiers related to it in order to aggregate them into a logical publication. The relationships and data flow between SoSOL, the Papyrological Navigator, and the Numbers Server are illustrated in Figure \ref{dataflow}.
 
-\subsection*{Alternative Syntax for XML Editing}\nocite{xsugar}
+\subsection*{Alternative Syntax for XML Editing}
 
 One of the proposed items for the SoSOL environment was to provide a “tagless” editing environment for the EpiDoc XML data used by IDP. For metadata, where there is some fixed number of possible elements, this can be achieved by simply presenting the user with a form specific to the needed data types which translates to and from XML. This is what we have done for HGV metadata, as shown in Figure \ref{hgvmeta}.
 
@@ -206,7 +206,13 @@ However, for freeform text transcriptions like those recorded by the DDbDP, the 
 
 EpiDoc is a TEI-based XML encoding standard for marking up the same sort of textual semantics represented in Leiden, with additional standardized markup for other features typically needed when encoding ancient texts. For example, numbers which are written as Greek text can be marked semantically as numbers with their value, orthographic corrections can have both the normalized and original word linked, and so forth. Thus the key advantage of EpiDoc is it acts as a superset of Leiden with explicit, computationally-actionable, semantics.
 
-Because we have our transcriptions already encoded in EpiDoc, we wanted to surface these facets of it to users, without burdening them with the full verbosity of XML markup. We also wanted them to be able to explicitly mark up new texts in the same environment.
+Because we have our transcriptions already encoded in EpiDoc, we wanted to surface these facets of it to users, without burdening them with the full verbosity of XML markup. We also wanted them to be able to explicitly mark up new texts in the same environment. We contemplated trying to use the \texttt{contentEditable} HTML attribute to provide a sort of “rich text” what-you-see-is-what-you-get (WYSIWYG) text entry form. However, browser implementations of this feature vary wildly in behavior and often confound user expectations, and what exactly the meaning of “WYSIWYG” is when you're semantically marking up things such as numbers is debatable.
+
+As a result, we decided to use a simple plaintext form element utilizing a transformation of the XML to make the text more legible and easier to edit quickly. Of course, to update the modified plaintext would require a transformation back to XML to save it in our system. One way to do this would be to write two separate transform processes, one from XML to plaintext, and one from plaintext to XML. However, verifying and maintaining such a process would be difficult.
+
+Instead, we use a tool called XSugar\footnote{\url{http://www.brics.dk/xsugar/}} to perform both directions of the XML transform. This utility allows you to define a single context-free grammar where each rule has both an XML representation and a non-XML representation. Thus it can parse either representation into an intermediate form, and then use the same ruleset to output the opposite representation. Additionally, the tool can check that this transformation is reversible — that is, round-trips of a given input do not alter it \citep{xsugar}.
+
+We call our non-XML representation of EpiDoc markup “Leiden+”, as it attempts to use the same symbols as Leiden where possible, but is also able to unambiguously represent the additional markup enabled by EpiDoc encoding.
 
 \begin{figure}[!ht]
     \begin{verbatim}
@@ -236,7 +242,7 @@ Because we have our transcriptions already encoded in EpiDoc, we wanted to surfa
     \caption{Leiden+ representation of the same text\label{leidenp}}
 \end{figure}
 
-\begin{figure}[!hb]
+\begin{figure}[!hbt]
   \begin{verbatim}
 <div xml:lang="grc" type="edition" xml:space="preserve">
   <ab>
