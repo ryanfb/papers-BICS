@@ -178,6 +178,12 @@ SoSOL deals with this internally by representing each “publication” as a col
 
 SoSOL uses the “publication” as the unit of work for the editorial workflow  — each publication corresponds to a development branch in the Git backend. When the identifiers belonging to a publication have been modified, it can be submitted to the editorial boards for review. Because we have had to deal with disparate types of resources from the beginning, the review process is able to have different editorial boards for each type of identifier. Currently this is implemented as a sequential workflow; if a user submits a publication with changes to HGV metadata, DDbDP transcription, and HGV translation, it will be reviewed in that order, requiring approval from each board before going to the next. Each editorial board has their own membership and voting rules.
 
+\begin{figure}[]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/dashboard.png}
+  \caption{A user's dashboard in SoSOL, with publications being worked on\label{dashboard}}
+\end{figure}
+
 Because of Git's design, SoSOL is actually able to maintain a separate Git repository for each user and editorial board in its backend. Despite the fact that IDP's canonical data repository is around 1GB in size, each copy can be on the order of kilobytes because it can simply reference objects already stored in the repository it's been forked from. This means that when a user begins editing a publication, the branch for that publication is made on their copy of the repository, and only new objects which they create in the course of making updates must be stored in it. When they submit the publication, this branch and its related objects are copied to the board's repository, and when they approve the publication they then merge this branch back into the canonical data repository. Eventually, this design could be integrated with a Git server (in the style of GitHub\footnote{\url{http://github.com/}}), allowing each user to have direct access to their own Git repository to easily make changes using any process they choose before submission.
 
 Another advantage of Git's design is that accurate, transparent attribution is easily maintained in the history of each piece of data. Interventions made by the editorial board after submission are preserved as being authored by them rather than by the submitter. Because Git allows a distinction between “author” (who wrote a commit) and “committer” (who put a given commit in the repository), we can record which editor made the merge to the canonical repository without losing information about who actually  authored the underlying changes. We also record the members of the editorial board at the time a submission is accepted, by adding that they've signed off to the commit message.
@@ -210,13 +216,13 @@ Because we have our transcriptions already encoded in EpiDoc, we wanted to surfa
 
 As a result, we decided to use a simple plaintext form element utilizing a transformation of the XML to make the text more legible and easier to edit quickly. Of course, to update the modified plaintext would require a transformation back to XML to save it in our system. One way to do this would be to write two separate transform processes, one from XML to plaintext, and one from plaintext to XML. However, verifying and maintaining such a process would be difficult.
 
-Instead, we use a tool called XSugar\footnote{\url{http://www.brics.dk/xsugar/}} to perform both directions of the XML transform. This utility allows you to define a single context-free grammar where each rule has both an XML representation and a non-XML representation. Thus it can parse either representation into an intermediate form, and then use the same ruleset to output the opposite representation. Additionally, the tool can check that this transformation is reversible — that is, round-trips of a given input do not alter it \citep{xsugar}. Due to the immense size of the DDbDP corpus (over 55,000 transcriptions), we use automated nightly runs of transformations on the entire corpus to verify and improve both our definition of the Leiden+ grammar as well as reduce encoding errors in the source XML (many being difficult edge cases left over from the transitioning of the DDbDP from SGML to EpiDoc). We also use an XML normalization process to reduce the amount of “thrashing” in the version history — small changes to the text shouldn't alter unrelated parts of the XML and make it hard to spot the actual change when looking through the file's history.
+Instead, we use a tool called XSugar\footnote{\url{http://www.brics.dk/xsugar/}} to perform both directions of the XML transform. This utility allows you to define a single context-free grammar where each rule has both an XML representation and a non-XML representation. Thus it can parse either representation into an intermediate form, and then use the same ruleset to output the opposite representation. Additionally, the tool can check that this transformation is reversible — that is, round-trips of a given input do not alter it \citep{xsugar}. Due to the immense size of the DDbDP corpus (over 55,000 transcriptions), we use automated nightly runs of transformations on the entire corpus to both verify and improve our definition of the Leiden+ grammar as well as reduce encoding errors in the source XML (many being difficult edge cases left over from the transitioning of the DDbDP from SGML to EpiDoc). We also use an XML normalization process to reduce the amount of “thrashing” in the version history — small changes to the text shouldn't alter unrelated parts of the XML and make it hard to spot the actual change when looking through the file's history.
 
 We call our non-XML representation of EpiDoc markup “Leiden+”, as it attempts to use the same symbols as Leiden where possible, but is also able to unambiguously represent the additional markup enabled by EpiDoc encoding. Figures \ref{leiden} and \ref{epidoc} illustrate how a traditional print transcription might be marked up in EpiDoc XML, with Figure \ref{leidenp} being the Leiden+ transformation of that XML. As you can see, things like the Greek letter “\texttt{κ}” on line four being the number “20” are implicit in print, but explicit in both EpiDoc and Leiden+.
 
 Though Leiden+ must in some cases be more verbose than traditional Leiden, this is due to the fact that Leiden+ must be able to be transformed into unambiguous, valid EpiDoc XML. For example, on line three, expanded abbreviations use nested parentheses instead of a single pair around just the expansion, because the unit of text which is being expanded must be marked up as well. Because multiple standalone Unicode combining underdots (indicating vestiges of illegible characters, as in line one of the example text) can be confusing to type and count by themselves, Leiden+ simply uses a period followed by the number of characters. However, for characters which are unclear but can be inferred from context (as in “\texttt{ῦ}” of
 “\texttt{αὐτοῦ}”
-at the end of line 3), Leiden+ preserves the combining underdot for readability, and we provide a JavaScript helper for inserting the character.
+at the end of line 3), Leiden+ preserves the combining underdot for readability, and we provide a JavaScript helper for inserting the character (a screenshot of Leiden+ as it appears with helpers in the editing environment is shown in Figure \ref{leidenedit}). Users can, of course, still edit the XML directly, with an easy button provided to copy the entire content of each text area to their clipboard so they can paste it into their own editor.
 
 \begin{figure}[!hbt]
     \begin{verbatim}
@@ -246,7 +252,7 @@ at the end of line 3), Leiden+ preserves the combining underdot for readability,
     \caption{Leiden+ representation of the P.Sijp., 41a text\label{leidenp}}
 \end{figure}
 
-\begin{figure}[!hbt]
+\begin{figure}[!hb]
   \begin{verbatim}
 <div xml:lang="grc" type="edition" xml:space="preserve">
   <ab>
@@ -276,6 +282,12 @@ at the end of line 3), Leiden+ preserves the combining underdot for readability,
 </div>
   \end{verbatim}
   \caption{EpiDoc XML fragment equivalent to the preceding Leiden+\label{epidoc}}
+\end{figure}
+
+\begin{figure}[]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/leidenedit.png}
+  \caption{Editing Leiden+ in SoSOL\label{leidenedit}}
 \end{figure}
 
 \section*{Conclusions}
