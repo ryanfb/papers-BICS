@@ -252,7 +252,7 @@ at the end of line 3), Leiden+ preserves the combining underdot for readability,
     \caption{Leiden+ representation of the P.Sijp., 41a text\label{leidenp}}
 \end{figure}
 
-\begin{figure}[!hb]
+\begin{figure}[!hbt]
   \begin{verbatim}
 <div xml:lang="grc" type="edition" xml:space="preserve">
   <ab>
@@ -284,7 +284,7 @@ at the end of line 3), Leiden+ preserves the combining underdot for readability,
   \caption{EpiDoc XML fragment equivalent to the preceding Leiden+\label{epidoc}}
 \end{figure}
 
-\begin{figure}[]
+\begin{figure}[!hb]
   \centering
   \includegraphics[width=0.8\textwidth]{images/leidenedit.png}
   \caption{Editing Leiden+ in SoSOL\label{leidenedit}}
@@ -294,7 +294,11 @@ at the end of line 3), Leiden+ preserves the combining underdot for readability,
 
 While Leiden+ does take some experience to get used to, in EpiDoc training seminars where we have introduced students and papyrologists to using it as an alternative for editing XML, the response thus far has been great. Users have entered and submitted hundreds of new texts for inclusion in the DDbDP using the production version of SoSOL running on papyri.info, dubbed the Papyrological Editor.\footnote{\url{http://papyri.info/editor/}} Nearly 5,000 commits have been made since the transition of IDP to using Git for its data backend, many through SoSOL.
 
-We believe that exposing our complete dataset and its history to the community is the best approach to enabling true community ownership of the data. Using a DVCS for our data backend in the editing environment instead of a traditional relational database backend is what allows us to do this with very little friction, and facilitates direct interaction with the data repository without necessitating going through our project-specific editing environment. That the system preserves attribution at every step will, we hope, foster a sense that users do have some investment and ownership in their contributions.
+This model of loosely-coupled tools operating on their interests (SoSOL's interaction with the canonical Git repository, SoSOL and PN using standard RDF to interact with the Numbers Server, etc.) has allowed for flexible and unexpected uses with very little additional work. For example, because the Leiden+ grammar definition and transformation code is completely separate from SoSOL and only included externally, the same code should be easily reusable by any project wishing to use it in conjunction with their standard EpiDoc XML texts.
+
+We believe that exposing our complete dataset and its history to the community is the best approach to enabling true community ownership of the data. Using a DVCS for our data backend in the editing environment instead of a traditional relational database backend is what allows us to do this with very little friction, and facilitates direct interaction with the data repository without necessitating going through our project-specific editing environment. That the system transparently preserves attribution at every step will, we hope, foster a sense that users do have some investment and ownership in their contributions.
+
+
 
 \bibliographystyle{plainnat}
 \bibliography{bics-sosol}
