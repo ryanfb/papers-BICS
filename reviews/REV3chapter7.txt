@@ -1,0 +1,101 @@
+This is a well-written chapter; it’s technical without being alienating for
+readers with little or average knowledge of digital technologies; it offers a
+structured and comprehensive report on an innovative digital platform for
+dissemination and collaborative editing of data. It is fascinating to read how
+different new technologies are meaningfully combined in one resource, serving
+a community of researchers with common research interests and data. The
+chapter addresses also (if only parenthetical) a complex set of issues
+relating to the evolution of established Classics research methods and
+scholarly activities (like the collection of metadata about ancient documents
+or the transcription of primary sources) in the digital age. The decision to
+focus on technical aspects of SoSOL (especially the choice and implementation
+of a Distributed Version Control System) seems justifiable, since this is a
+technological innovation for humanities research that opens new perspectives
+for e-research in the humanities in general (and not only Digital Classics).
+
+I am bit concerned that readers, who have little or no knowledge of the
+peculiarities of ancient documentary material and the projects combined into
+SoSOL, might find it difficult to understand why the specific technical
+solution was necessary, or, in other terms, why versioning à la Git is central
+for SoSOL. This can easily be achieved with a couple of references; I found
+for instance the information provided by R. Bagnall (Bagnall, 2010) (an
+earlier announcement about SoSOL) very useful in this respect. One further
+possibility would be to describe how Git handles user commits (p. 6) with real
+SoSOL data/examples instead of a fictional project.
+
+In general, the Chapter does not draw connecting lines to thoughts on the
+future of humanities research expressed by others; what immediately springs to
+mind are Greg Crane’s ideas and visions introduced in a series of articles
+with  (Gregory Crane, 2010) being a more or less direct response to R.
+Bagnall’s article mentioned above and (G Crane & Rydberg-Cox, 2000) being an
+earlier article where the concept of “corpus editors”, a new breed of
+humanities researchers with advanced technical skills, is being introduced.
+SoSOL appears to have such editors, who operate in the background performing
+the tasks described in p. 11, tune the whole system up and create tools
+meeting the needs of users (members of the “community”).  It would add value
+to the chapter as a report aiming at a broader adoption of the solutions
+described herein  to know more about the training and the background of the
+system’s architects and administrators. The same applies to information about
+the necessary hardware infrastructure needed and the overall costs involved in
+putting up and maintaining such a system.
+
+There is one further area where additional information would be welcome: who
+are the members of the SoSOL community? Are there now more “active scholars
+who care to participate” because such an advanced electronic platform is
+available? Is SoSOL being used outside research institutions and universities
+by enthousiasts and lay experts? How about the geographical distribution of
+SoSOL users? This information is, in my view, necessary in order to fully
+understand the consequences of the reported transition from individual
+research projects to a “papyrological community”.
+
+I am personally rather sceptical when reading statements about the “rigidity
+and implied authority of print publications”; whether the DDbDP and for that
+matter any other comparable resource is or is not a fixed resource is not in
+my view a matter of medium (print vs digital) but a matter of research
+methodology and theoretical framework underlying the interpretation of the
+data modelled and represented within the resource. What I mean is this: Are we
+describing the corpus of documentary papyri as a “collection of conjectures”
+because the data as such can only be approached in this way (are, for
+instance, multiple parallel transcriptions of individual papyri allowed in the
+canonical data repository, giving room to subjective interpretations by
+individual scholars, or is there only one, more or less fixed, transcription
+allowed at a time? Are the data “constantly changing” because the resources
+are constantly enhanced and improved or because the data are fluid and each
+transcription or similar activity comes to different results?) or simply
+because it is now technically possible to record meaningful and meaningless
+changes without friction and the cost involved in printing addenda et
+corrigenda every other month? Correcting and improving existing editions and
+transcriptions of ancient documents and texts is a scholarly activity
+performed for centuries. It can now be done more effectively, but is it being
+done in a different way, because of the digital tools available?
+
+A few clarification questions: what happens if the editorial board does not
+approve the changes committed by users?  since work is not assigned to users
+in an organized way, how is reduplication of labour avoided (two users editing
+the same document)?  Apparently Git records all changes to the documents, even
+trivial ones, as soon as they are committed to the system. Doesn’t this raise
+the signal-to-noise ratio for everyone who wants to make sense of the changes?
+(some information about this issue is given in p. 11, I would personally want
+to know more about how this problem is dealt with)
+
+Let me add, as a final remark, that the above points of criticism do not alter
+my overall assessment of this chapter as being an excellent contribution of a
+kind that is needed in order to get Classicists and humanities researchers in
+general thinking about possibilities and perspectives of using such advanced
+collaborative tools like those described here.
+
+
+Bagnall, R. (2010). Integrating Digital Papyrology. “Online Humanities
+Scholarship: The Shape of Things to Come&quot; a three-day, Mellon Foundation
+Conference at the University of Virginia to explore how to develop and sustain
+online humanities research and publication, March 26-28, 2010”: Retrieved
+April 26, 2011, from http://archive.nyu.edu/handle/2451/29592.
+
+Crane, G, & Rydberg-Cox, J. A. (2000). New technology and new roles: the need
+for “corpus editors.” Proceedings of the fifth {ACM} conference on Digital
+libraries (pp. 252-253). {ACM} New York, {NY,} {USA}.
+
+Crane, Gregory. (2010). Give us Editors! Re-inventing the Edition and
+Re-Thinking the Humanities. Connexions, (May 14), 1-17. Retrieved from
+http://cnx.org/content/m34316/1.2/.
+

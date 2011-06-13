@@ -1,0 +1,27 @@
+Overall the article is fine. It's quite technical, but the language is
+clear and I didn't have any trouble following the argument (so one
+would need to be generally intelligent, but need not be a software
+programmer to understand). I do wonder if the introduction were
+written by someone other than the person who wrote the body of the
+article, there is some strange language there - look at the very first
+sentence of the paper, "IDP is a joint project among a number of
+institutions aimed at *improving and combining the relationships
+between* three digital papyrological resources..." I think I know what
+they mean, but they aren't really saying what they mean. How do you
+combine relationships? See also: "DDbDP digitally collects a number of
+transcriptions..." The entire first page needs to be gone over and
+perhaps even rewritten to match the tenor of the rest of the paper.
+Maybe I'm being too critical, but the rest of the article was quite
+fine.
+
+A few minor points:
+
+P. 3: "As an example, the English Wikipedia..." should perhaps be
+"English-language Wikipedia"
+P. 11: "Figures 5 and 7 illustrate how a traditional print
+transcription..." That should definitely be Figure 6 instead of 5
+FN 16: Ends with "see also footnote ." - number needs to be added
+there, maybe 12 which is also a FN about RDF
+
+I hope my comments are helpful. Generally this is an interesting and
+informative article, well-written except for the introduction.

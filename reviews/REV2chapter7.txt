@@ -1,0 +1,9 @@
+My main reaction, as a non-specialist, was that it was a very technical paper,
+with a lot of detail on the database and XML implementation, and not very
+accessible for someone wanting to understand how these resources advance
+scholarship. The authors name the 3 resources in the first paragraph, without
+saying what is in them and dismiss the use case in a sweeping "The benefits of
+unifying these data sources should be obvious..". I would have liked to learn
+more about how the resources are interrogated online and how they are used,
+and by whom. Maybe this is unfair if readers will already be familiar with
+them, but I am not.
