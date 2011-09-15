@@ -112,7 +112,7 @@ Standing in starker contrast is how submissions which have not received editoria
 What do we mean here by “fully open”?
 
 On one level, it is the terms under which data is published.
-Though asserting any sort of copyright on the 2,000-year-old texts themselves is perhaps nonsensical (at least in the US\footnote{See e.g. \emph{Bridgeman Art Library v. Corel Corp.} (\url{http://www.law.cornell.edu/copyright/cases/36_FSupp2d_191.htm}), which rules that “slavish copies” of public domain works are not copyrightable. For scholarly transcriptions and images of ancient texts, much of the goal is to produce as faithfully slavish a copy as possible.}), the complete set of IDP XML files are published with a Creative Commons Attribution 3.0 License,\footnote{“Creative Commons Attribution 3.0 License” - \url{http://creativecommons.org/licenses/by/3.0/}} explicitly permitting the typical varieties of scholarly reuse and citation anticipated for the data. (Atypical and unanticipated forms of reuse would be even more exciting.)
+Though asserting any sort of copyright on the 2,000-year-old texts themselves is perhaps nonsensical (at least in the US\footnote{See e.g. \emph{Bridgeman Art Library v. Corel Corp.} (\url{http://www.law.cornell.edu/copyright/cases/36_FSupp2d_191.htm}), which rules that “slavish copies” of public domain works are not copyrightable. For scholarly transcriptions and images of ancient texts, much of the goal is to produce as faithfully slavish a copy as possible.}), the complete set of IDP XML files are published with a Creative Commons Attribution 3.0 License,\footnote{“Creative Commons Attribution 3.0 License” - \url{http://creativecommons.org/licenses/by/3.0/}} explicitly permitting the typical varieties of scholarly reuse and citation anticipated for the data, in line with other recent calls for open data in the humanities \citep{crane}. (Atypical and unanticipated forms of reuse would be even more exciting.)
 
 On another level, it is the \emph{manner} in which data is published. For collaborative online projects, this is usually a challenge. If the data is constantly changing, how do you publish it in any traditional sense? Perhaps even more challenging is this: how do you publish the changes themselves, both retroactively and proactively?
 
@@ -220,7 +220,7 @@ Though Leiden+ must in some cases be more verbose than traditional Leiden, this 
 “\texttt{αὐτοῦ}”
 at the end of line 3), Leiden+ preserves the combining underdot for readability, and we provide a JavaScript helper for inserting the character (a screenshot of Leiden+ as it appears with helpers in the editing environment is shown in Figure \ref{leidenedit}). Users can, of course, still edit the XML directly, with a button provided to copy the entire content of each text area to their clipboard so they can paste it into their own editor. In either case, submissions are validated against the EpiDoc RELAX NG schema\footnote{RELAX NG (REgular LAnguage for XML Next Generation) allows the creation of complex XML validation rules not possible with traditional XML DTDs (Document Type Definitions).} before saving in order to ensure that invalid XML does not make its way into the system.
 
-\begin{figure}[!hbt]
+\begin{figure}[]
     \begin{verbatim}
 [ἔτους α (?) Αὐτοκράτορος]   ̣  ̣[  ̣]  ̣  ̣του 
 [- ca.12 -] Σεβαστοῦ 
@@ -234,7 +234,7 @@ at the end of line 3), Leiden+ preserves the combining underdot for readability,
     \caption{Typical print transcription following Leiden conventions (P.Sijp., 41a)\label{leiden}}
 \end{figure}\nocite{psijp}
 
-\begin{figure}[!hbt]
+\begin{figure}[]
     \begin{verbatim}
 1. [ἔτους] [<#α=1#> (?)] [Αὐτοκράτορος] .2[.1].2του
 2. [ca.12] Σεβαστοῦ
@@ -248,7 +248,7 @@ at the end of line 3), Leiden+ preserves the combining underdot for readability,
     \caption{Leiden+ representation of the P.Sijp., 41a text\label{leidenp}}
 \end{figure}
 
-\begin{figure}[!hbt]
+\begin{figure}[]
   \begin{verbatim}
 <div xml:lang="grc" type="edition" xml:space="preserve">
   <ab>
