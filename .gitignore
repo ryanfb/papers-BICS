@@ -13,3 +13,4 @@ bics-sosol.pdf
 *.d
 *.make
 *.fls
+*.temp
