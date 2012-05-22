@@ -1,14 +1,24 @@
-Editorial feedback: ' The Son of Suda On-Line'
-General comments:
-Make sure all acronyms are expanded at first use (which we think you do except for):
-An additional note on SGML added to footnote1) would be helpful for the non-specialist. Perhaps even better would be to go from SGML > XML > EPIDOC in that footnote.
+Editorial feedback: ' The Son of Suda On-Line' General comments: Make sure all
+acronyms are expanded at first use (which we think you do except for): An
+additional note on SGML added to footnote1) would be helpful for the
+non-specialist. Perhaps even better would be to go from SGML > XML > EPIDOC in
+that footnote.
 
  
-Add a sentence (or two) to the conclusions about how this project enables new research that would not have been possible without it. Do you have any details about how it is being used? Can you say anything about possible wider implications for Digital Humanities in general i.e. how this approach to versioning / multiple users etc could be re-purposed for other DH type projects (again, just a sentence) perhaps this would be a methodology pertinent for the crowd sourcing projects that are becoming popular? 
+Add a sentence (or two) to the conclusions about how this project enables new
+research that would not have been possible without it. Do you have any details
+about how it is being used? Can you say anything about possible wider
+implications for Digital Humanities in general i.e. how this approach to
+versioning / multiple users etc could be re-purposed for other DH type projects
+(again, just a sentence) perhaps this would be a methodology pertinent for the
+crowd sourcing projects that are becoming popular? 
 
-This is an advance collaborative tool. Do you have any sense of a 'community' building around this – a community of contributors or of users? Maybe again something for the conclusions. 
+This is an advance collaborative tool. Do you have any sense of a 'community'
+building around this – a community of contributors or of users? Maybe again
+something for the conclusions. 
 
-You have more words available if you wanted to further expand on any of these points. 
+You have more words available if you wanted to further expand on any of these
+points. 
 
 Bring any contributor/user stats up to date if you have revised figures. 
 
@@ -19,5 +29,7 @@ Rev 1: addressed and expanded where asked
 Rev 2: addressed and re-written where suggested
 
 
-Rev3: Except see the 'few clarification questions':
-I may have missed this but – "what happens if the editorial board does not approve the changes committed by users?" This just needs a short note in the appropriate place (if it's not already covered elsewhere).
+Rev3: Except see the 'few clarification questions': I may have missed this but
+– "what happens if the editorial board does not approve the changes committed
+by users?" This just needs a short note in the appropriate place (if it's not
+already covered elsewhere).
