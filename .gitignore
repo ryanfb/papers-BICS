@@ -10,3 +10,6 @@ bics-sosol.pdf
 *.ps
 *.synctex.gz
 *.out
+*.d
+*.make
+*.fls
